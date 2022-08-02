@@ -11,44 +11,46 @@ function getComputerChoice() {
   }
 }
 
-// function playRound(playerSelection,computerSelection) {
-//   if((playerSelection === "rock")&&(computerSelection === "scissors")) {
-//     return "You win! Rock beats Scissors";
-//   } else if((playerSelection === "paper")&&(computerSelection === "rock")) {
-//     return "You win! Paper beats Rock";
-//   } else if((playerSelection === "scissors")&&(computerSelection === "paper")) {
-//     return "You win! scissors beats paper"
-//   } else if(playerSelection === computerSelection){
-//     return "Its a draw"
-//   } else {
-//     return "You lose"
-//   }
-// }
+let playerScore = 0;
+let computerScore = 0;
 
-const playerSelection =  "rock"//prompt("enter your choice");
-const computerSelection = getComputerChoice();
-
-
-//console.log(playRound(playerSelection, computerSelection));
-
-function game() {
-
+function game (){
   for (let i = 0; i < 5; i++) {
+    let playerSelection = prompt("enter your choice","").toLowerCase();
+    let computerSelection = getComputerChoice();
     function playRound(playerSelection,computerSelection) {
       if((playerSelection === "rock")&&(computerSelection === "scissors")) {
+        playerScore++
         return "You win! Rock beats Scissors";
       } else if((playerSelection === "paper")&&(computerSelection === "rock")) {
+        playerScore++
         return "You win! Paper beats Rock";
       } else if((playerSelection === "scissors")&&(computerSelection === "paper")) {
+        playerScore++
         return "You win! scissors beats paper"
       } else if(playerSelection === computerSelection){
         return "Its a draw"
       } else {
+        computerScore++
         return "You lose"
       }
-    } 
-    console.log(playRound(playerSelection, computerSelection))
-  }
-  
+    }
+    console.log(playRound(playerSelection,computerSelection))
 
+  }
+  function showWinner() {
+    if(playerScore > computerScore) {
+      return "Player wins this set"
+    }else {
+      return "Computer wins this set"
+    }
+  }
+  console.log(`playerScore is ${playerScore}`);
+  console.log(`computerScore is ${computerScore}`);
+  console.log(showWinner());
+  
 }
+
+
+
+
