@@ -12,9 +12,18 @@ function getComputerChoice() {
 let playerScore = 0;
 let computerScore = 0;
 
-function game (){
-  for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt("enter your choice","").toLowerCase();
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button)=> {
+  button.addEventListener("click", game);
+});
+
+  
+
+
+
+
+function game (e){
+    let playerSelection = e.target.id;
     let computerSelection = getComputerChoice();
     function playRound(playerSelection,computerSelection) {
       if((playerSelection === "rock")&&(computerSelection === "scissors")) {
@@ -27,28 +36,54 @@ function game (){
         playerScore++
         return "You win! scissors beats paper"
       } else if(playerSelection === computerSelection){
-        return "Its a draw"
+        return `It's a draw, you chose ${playerSelection} and computer chose ${computerSelection}`
       } else {
         computerScore++
-        return "You lose"
+        return `You lose, ${computerSelection} beats ${playerSelection}`
       }
     }
-    console.log(playRound(playerSelection,computerSelection))
+
+
+    let winnerh2 = document.getElementById("winner");
+  winnerh2.textContent = playRound(playerSelection,computerSelection);
+
+  let playerh2 = document.getElementById("player");
+  playerh2.textContent = `Player score is: ${playerScore}`;
+
+  let computerh2 = document.getElementById("computer");
+  computerh2.textContent = `Computer score: is ${computerScore}`;
+
+  let winner5 = document.getElementById("winner5");
+  winner5.textContent = firstToFive();
+
+
 
   }
-  function showWinner() {
-    if(playerScore > computerScore) {
-      return "Player wins this set"
-    }else {
-      return "Computer wins this set"
+
+    function firstToFive() {
+      if(computerScore === 5) {
+        playerScore = 0;
+        computerScore = 0;
+        return "Computer wins this round by reaching a score of 5 first"
+      } else if (playerScore === 5) {
+        playerScore = 0;
+        computerScore = 0;
+        return "Player wins this round by reaching a score of 5 first"
+      } else return; 
     }
-  }
-  console.log(`playerScore is ${playerScore}`);
-  console.log(`computerScore is ${computerScore}`);
-  console.log(showWinner());
+
+ 
+
+    
+ 
   
-}
+  
 
 
+
+
+  /**
+   * how to reset game after score reaches 5
+   */
 
 
